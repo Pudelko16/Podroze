@@ -1,0 +1,134 @@
+<html>
+<head>
+<title> Podróże </title>
+<link rel="stylesheet" href="styl.css">
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+        width: 33.33%;
+    }
+    img.zoomable {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* --- OVERLAY --- */
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.7);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+    }
+
+    #overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+        animation: zoomIn 0.25s ease;
+    }
+
+    /* Animacja */
+    @keyframes zoomIn {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    /* PRZYCISK X */
+    #close-btn {
+        position: fixed;
+        top: 25px;
+        right: 30px;
+        font-size: 40px;
+        color: white;
+        cursor: pointer;
+        z-index: 1000;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    #close-btn:hover {
+        color: #ff4c4c;
+    }
+
+</style>
+
+</head>
+<body>
+
+<nav>
+  <ul>
+   <li><a href="podrozestas7e.html"><img src="Obrazki/glowna.png"></a></li>
+    <li><a href="galeria.html"><img src="Obrazki/Galeria.png"></a></li>
+     <li><a href="kontakt.html"><img src="Obrazki/Kontakt1.png"></a></li>
+  </ul>
+</nav>
+
+<table>
+  <tr>
+    <td><img class="zoomable" src="obrazki/1.jpg" alt="Opis obrazka 1"></td>
+    <td><img class="zoomable" src="obrazki/2.jpg" alt="Opis obrazka 2"></td>
+    <td><img class="zoomable" src="obrazki/3.jpg" alt="Opis obrazka 3"></td>
+  </tr>
+  <tr>
+    <td><img class="zoomable" src="obrazki/4.jpg" alt="Opis obrazka 4"></td>
+    <td><img class="zoomable" src="obrazki/5.jpg" alt="Opis obrazka 5"></td>
+    <td><img class="zoomable" src="obrazki/6.jpg" alt="Opis obrazka 6"></td>
+  </tr>
+  <tr>
+    <td><img class="zoomable" src="obrazki/7.jpg" alt="Opis obrazka 7"></td>
+    <td><img class="zoomable" src="obrazki/8.jpg" alt="Opis obrazka 8"></td>
+    <td><img class="zoomable" src="obrazki/9.jpg" alt="Opis obrazka 9"></td>
+  </tr>
+</table>
+
+<!-- OVERLAY + X -->
+<div id="overlay">
+    <div id="close-btn">&times;</div>
+    <img id="overlay-img" src="">
+</div>
+
+<script>
+    const zoomables = document.querySelectorAll('.zoomable');
+    const overlay = document.getElementById('overlay');
+    const overlayImg = document.getElementById('overlay-img');
+    const closeBtn = document.getElementById('close-btn');
+
+    zoomables.forEach(img => {
+        img.addEventListener('click', () => {
+            overlayImg.src = img.src;
+            overlay.style.display = 'flex';
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
